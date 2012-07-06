@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+# enable debugging
+import cgi
+import serial
+import sys
+#import cgitb
+#cgitb.enable()
+
+print "Content-Type: text/plain;charset=utf-8"
+print
+
+
+
+form = cgi.FieldStorage()
+reset = form.getvalue("reset")
+
+
+port = "/dev/ttyUSB0"
+ser = serial.Serial(port,9600)
+value = 0
+
+
+status = ['off','washer','dryer','washer and dryer']
+
+ser.write('*')
+value = ser.read()
+swtich(value)
+    case 0:
+    print "The washer are not done. They may be " status[0]
+    break;
+    case 1:
+    print "The "status[1]" is done."
+    break;
+    case 2:
+    print "The "status[2]" is done." 
+    case 3;
+    print "The "status[3]" are done."
+    break;
+ser.write(reset)
+    
+

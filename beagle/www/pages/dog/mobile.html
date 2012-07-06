@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<meta http-equiv="refresh" content="600;url=http://fire.homelinux.net:8084/dog/timeout.html">
+<html>
+<head>
+
+<script type="application/x-javascript"> 
+     
+   addEventListener("load", function() 
+   { 
+   setTimeout(updateLayout, 0); 
+   }, false); 
+   
+   var currentWidth = 0; 
+   
+   function updateLayout() 
+   { 
+   if (window.innerWidth != currentWidth) 
+   { 
+   currentWidth = window.innerWidth; 
+   
+   var orient = currentWidth == 320 ? "profile" : "landscape"; 
+   document.body.setAttribute("orient", orient); 
+   setTimeout(function() 
+   { 
+   window.scrollTo(0, 1); 
+   }, 100); 
+   } 
+   } 
+   
+   setInterval(updateLayout, 100); 
+   
+   </script>
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=350, user-scalable=no">
+
+<title>Feed the dog!</title>
+<link rel="stylesheet" href="dog.css" type="text/css">
+<script>
+var voltON = 1 ;
+function get(url) { 
+var xmlhttp=false;
+ xmlhttp = new XMLHttpRequest();
+ xmlhttp.open("GET", url,true);
+ xmlhttp.send(null)
+}
+  
+function feed() {
+ if (voltON > 0 ) 
+	{
+	get('../decoder_control.cgi?command=95&user=xxx&pwd=xxx');
+	voltON = 0;
+	}
+else
+	{
+	get('../decoder_control.cgi?command=94&user=xxx&pwd=xxx'); 
+	voltON = 1;
+	}
+}
+</script>
+
+<body>
+
+<div class="round_box" id="navigation">
+	<img class="round_corner" src="img/round_top_long.png">
+	<div class="content">
+
+<img src="../videostream.cgi" width=320 height=240>
+
+<div class="clear"></div>
+        </div>
+        <img class="round_corner" src="img/round_bottom_long.png">
+</div>
+
+
+<div class="round_box" id="navigation">
+        <img class="round_corner" src="img/round_top_long.png">
+        <div class="content">
+		<a class="button" href="#" onClick="get('../decoder_control.cgi?command=4&onestep=1&user=xxx&pwd=xxx');"><img src="img/1leftarrow.png"></a>     
+                <a class="button" href="#" onClick="get('../decoder_control.cgi?command=0&onestep=1&user=xxx&pwd=xxx');"><img src="img/1uparrow.png"></a>
+                <a class="button" href="#" onClick="get('../decoder_control.cgi?command=2&onestep=1&user=xxx&pwd=xxx');"><img src="img/1downarrow.png"></a>
+                <a class="button" href="#" onClick="get('../decoder_control.cgi?command=6&onestep=1&user=xxx&pwd=xxx');"><img src="img/1rightarrow.png"></a>
+		<a class="button" href="#" onClick="get('../decoder_control.cgi?command=28&user=xxx&pwd=xxx');"><img src="img/horizontal.png"></a>
+                <a class="button" href="#" onClick="get('../decoder_control.cgi?command=26&user=xxx&pwd=xxx');"><img src="img/vertical.png"></a>
+                
+		<a class="button" href="#" onClick="get('../decoder_control.cgi?command=31&user=xxx&pwd=xxx');"><img src="img/lower_mid.png"></a>	
+		<a class="button" href="#" onClick="get('../decoder_control.cgi?command=33&user=xxx&pwd=xxx');"><img src="img/lower_left.png"></a>
+                <a class="button" href="#" onClick="get('../decoder_control.cgi?command=35&user=xxx&pwd=xxx');"><img src="img/mid_left.png"></a>
+                <a class="button" href="#" onClick="get('../decoder_control.cgi?command=37&user=xxx&pwd=xxx');"><img src="img/mid_right.png"></a>
+                <a class="button" href="#" onClick="get('../decoder_control.cgi?command=39&user=xxx&pwd=xxx');"><img src="img/lower_right.png"></a>
+		<a class="button" href="#" onClick="get('../decoder_control.cgi?command=31&user=xxx&pwd=xxx');"><img src="img/lower_mid.png"></a>
+		
+		<a class="actions" href="#" onClick="get('http://fire.homelinux.net:2904/whistl.php');"><img src="img/whistle.png"></a>
+                <a class="actions" href="#" onClick="get('http://fire.homelinux.net:2904/sit.php');"><img src="img/sit.png"></a>                
+		<a class="actions" href="#" onClick="get('http://fire.homelinux.net:2904/laydown.php');"><img src="img/laydown2.png"></a>	
+		<a class="actions" href="#" onClick="get('http://fire.homelinux.net:2904/good.php');"><img src="img/good_girl.png"></a> 
+		<a class="actions" href="#" onClick="feed()"><img src="img/food.png"></a>
+
+
+<div class="clear"></div>
+        </div>
+        <img class="round_corner" src="img/round_bottom_long.png">
+</div>
+
+<div id="push"></div>
+     </div>
+<div id="footer">
+     <p></p>
+
+
+</body>
+</html>

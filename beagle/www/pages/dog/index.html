@@ -1,0 +1,105 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<script type="application/x-javascript"> 
+     
+   addEventListener("load", function() 
+   { 
+   setTimeout(updateLayout, 0); 
+   }, false); 
+   
+   var currentWidth = 0; 
+   
+   function updateLayout() 
+   { 
+   if (window.innerWidth != currentWidth) 
+   { 
+   currentWidth = window.innerWidth; 
+   
+   var orient = currentWidth == 320 ? "profile" : "landscape"; 
+   document.body.setAttribute("orient", orient); 
+   setTimeout(function() 
+   { 
+   window.scrollTo(0, 1); 
+   }, 100); 
+   } 
+   } 
+   
+   setInterval(updateLayout, 100); 
+   
+   </script>
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=350, user-scalable=no">
+
+<title>Feed the dog!</title>
+<link rel="stylesheet" href="dog.css" type="text/css">
+<script>
+var voltON = 1 ;
+function get(url) { 
+var xmlhttp=false;
+ xmlhttp = new XMLHttpRequest();
+ xmlhttp.open("GET", url,true);
+ xmlhttp.send(null)
+}
+  
+function feed() {
+ if (voltON > 0 ) 
+	{
+	get('../decoder_control.cgi?command=95&user=xxx&pwd=xxx');
+	voltON = 0;
+	}
+else
+	{
+	get('../decoder_control.cgi?command=94&user=xxx&pwd=xxx'); 
+	voltON = 1;
+	}
+}
+</script>
+
+<body>
+
+<div class="round_box" id="navigation">
+	<img class="round_corner" src="img/round_top_long.png">
+	<div class="content">
+
+<img src="http://192.168.10.160:8081" width="320" height="240"> 
+
+
+
+
+<div class="clear"></div>
+        </div>
+        <img class="round_corner" src="img/round_bottom_long.png">
+</div>
+
+
+<div class="round_box" id="navigation">
+        <img class="round_corner" src="img/round_top_long.png">
+        <div class="content">
+
+	               
+		<a class="actions" href="#" onClick="get('http://192.168.10.160/dog/whistl.php');"><img src="img/whistle.png"></a>
+                <a class="actions" href="#" onClick="get('http://192.168.10.160/dog/sit.php');"><img src="img/sit.png"></a>
+		<a class="actions" href="#" onClick="get('http://192.168.10.160/dog/good.php');"><img src="img/good_girl.png"></a> 
+		<a class="actions" href="#" onClick="get('http://192.168.10.160/dog/food.php');"><img src="img/food.png"></a> 
+
+
+<div class="clear"></div>
+        </div>
+        <img class="round_corner" src="img/round_bottom_long.png">
+</div>
+
+<div id="push"></div>
+     </div>
+<div id="footer">
+     <p></p>
+
+
+</body>
+</html>
+

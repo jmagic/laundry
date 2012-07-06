@@ -1,0 +1,56 @@
+body {
+        background: rgb(197, 204, 211);
+        width: 340px;
+        height: 100%;
+	overflow: hidden;
+        font-family: Helvetica;
+        font-size: 17px;
+}
+
+
+.round_box img {
+        display: block;
+        margin: 0;
+        padding: 5;
+        position: relative;
+}
+.round_box .content {
+        background: #FFF;
+        border: 0px solid #999;
+        border-width: 0 1px;
+        padding: 0 10px;
+	min-height: 100%;
+	height: auto !important;
+   	height: 100%;
+   	margin: 0px auto;
+}
+.footer, .push {
+   height: 40px;
+   }
+.round_corner {
+        clear: both;
+}
+.round_box {
+        margin: 0 0 10px 0;
+}
+.clear {
+        height: 0;
+        clear: both;
+}
+#navigation .button {
+        margin: 4px 2px;
+        display: block;
+        clear: none;
+        float: left;
+        border: none;
+
+}
+#navigation .actions {
+        margin: 4px 13px;
+        display: block;
+        clear: none;
+        float: left;
+        border: none;
+
+}
+      

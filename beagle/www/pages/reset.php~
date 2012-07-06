@@ -1,0 +1,7 @@
+<meta http-equiv="refresh" content="0;url=http://192.168.10.160">
+<?php
+        echo exec('/usr/bin/python /www/pages/reset.py');
+
+
+?>
+
