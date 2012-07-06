@@ -17,7 +17,9 @@ ADDRESS = (config.get('Config', 'address'))
 
 FLASH_TIMER = (config.getint('Config', 'flash_timer'))
 FLASH_TIMER_ID = wx.NewId()
-
+    
+multicast_group = '238.0.0.1'
+server_address = ('', 10001)
 
 RESET_ADDRESS = "http://%s/reset.py" % ADDRESS
 TEST_ADDRESS = "http://%s/test_both.py" % ADDRESS
@@ -34,8 +36,7 @@ class MonitorThread(Thread):
     #----------------------------------------------------------------------
     def run(self):
         """Run Worker Thread."""
-        multicast_group = '238.0.0.1'
-        server_address = ('', 10001)
+    
 
         # Create the socket
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
