@@ -17,9 +17,7 @@ ADDRESS = (config.get('Config', 'address'))
 
 FLASH_TIMER = (config.getint('Config', 'flash_timer'))
 FLASH_TIMER_ID = wx.NewId()
-    
-multicast_group = '238.0.0.1'
-server_address = ('', 10001)
+
 
 RESET_ADDRESS = "http://%s/reset.py" % ADDRESS
 TEST_ADDRESS = "http://%s/test_both.py" % ADDRESS
@@ -36,7 +34,8 @@ class MonitorThread(Thread):
     #----------------------------------------------------------------------
     def run(self):
         """Run Worker Thread."""
-    
+        multicast_group = '238.0.0.1'
+        server_address = ('', 10001)
 
         # Create the socket
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -155,8 +154,8 @@ class TaskBarIcon(wx.TaskBarIcon):
     def Reset(self, event):
         junk = urlopen(RESET_ADDRESS).read()
         #status = urlopen(STATUS_ADDRESS).read()
-        self.data = 'off'
-        self.StopBlinkIcon()
+        #self.data = 'off'
+        #self.StopBlinkIcon()
         
     def StopBlinkIcon(self):
         #print "in Stop blink icon"
@@ -168,8 +167,12 @@ class TaskBarIcon(wx.TaskBarIcon):
         self.CheckStatus(event)
 
     def on_exit(self, event):
+        #wx.CallAfter(self.Destroy)
+        self.RemoveIcon()
         wx.CallAfter(self.Destroy)
-    
+        
+        
+        
     def on_reset(self, event):
         self.Reset(event)
         
