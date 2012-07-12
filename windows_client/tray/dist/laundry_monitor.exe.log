@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "laundry_monitor.pyw", line 18, in <module>
+  File "ConfigParser.pyc", line 322, in get
+ConfigParser.NoSectionError: No section: 'Config'
