@@ -8,7 +8,7 @@ import sys
 from urllib import urlopen
 
 from threading import Thread
-from wx.lib.pubsub import setupkwargs
+from wx.lib.pubsub import setupv1 as psv1
 from wx.lib.pubsub import Publisher as pub
 
 config = ConfigParser.RawConfigParser()
@@ -68,7 +68,7 @@ class MonitorThread(Thread):
         """
         #print "sending pub.sendMessage with data"
         #print data
-        pub.sendMessage('update', data='off')
+        pub.sendMessage('update', data)
 
 #################################################################################################
 
