@@ -8,7 +8,8 @@ import sys
 from urllib import urlopen
 
 from threading import Thread
-from wx.lib.pubsub import Publisher
+#from wx.lib.pubsub import setupkwargs
+from wx.lib.pubsub import Publisher as pub
 
 config = ConfigParser.RawConfigParser()
 config.read('laundry.cfg')
@@ -50,7 +51,7 @@ class MonitorThread(Thread):
         # Receive/respond loop
         while True:
             data, address = sock.recvfrom(1024) 
-            #print data
+            print data
             wx.CallAfter(self.updateStatus, data)
             #time.sleep(5)
         # This is the code executing in the new thread.
@@ -65,7 +66,9 @@ class MonitorThread(Thread):
         """
         Send status to GUI
         """
-        Publisher().sendMessage("update", data)
+        print "sending pub.sendMessage with data"
+        print data
+        pub.sendMessage('update', data)
 
 #################################################################################################
 
@@ -94,7 +97,7 @@ class TaskBarIcon(wx.TaskBarIcon):
         self.flash_timer.Start(FLASH_TIMER)
         self.Bind(wx.EVT_TIMER, self.FlashIcon, id=FLASH_TIMER_ID) 
     # create a pubsub receiver
-        Publisher().subscribe(self.CheckStatus, "update")
+        pub.subscribe(self.CheckStatus, 'update')
     
     
     def CheckStatus(self, msg):
