@@ -2,3 +2,17 @@ Traceback (most recent call last):
   File "laundry_monitor.pyw", line 18, in <module>
   File "ConfigParser.pyc", line 322, in get
 ConfigParser.NoSectionError: No section: 'Config'
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "threading.pyc", line 554, in __bootstrap_inner
+  File "laundry_monitor.pyw", line 47, in run
+  File "socket.pyc", line 224, in meth
+error: [Errno 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
+
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "threading.pyc", line 554, in __bootstrap_inner
+  File "laundry_monitor.pyw", line 57, in run
+  File "wx\_core.pyc", line 14635, in CallAfter
+AssertionError: No wx.App created yet
+
