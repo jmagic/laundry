@@ -8,8 +8,9 @@ import sys
 from urllib import urlopen
 
 from threading import Thread
-#from wx.lib.pubsub import setupkwargs
-from wx.lib.pubsub import Publisher as pub
+#from wx.lib.pubsub import setupv1 as psv1
+#from wx.lib.pubsub import Publisher as pub
+from pydispatch import dispatcher
 
 config = ConfigParser.RawConfigParser()
 config.read('laundry.cfg')
@@ -19,6 +20,7 @@ ADDRESS = (config.get('Config', 'address'))
 FLASH_TIMER = (config.getint('Config', 'flash_timer'))
 FLASH_TIMER_ID = wx.NewId()
 
+SIGNAL = 'update'
 
 RESET_ADDRESS = "http://%s/reset.py" % ADDRESS
 TEST_ADDRESS = "http://%s/test_both.py" % ADDRESS
@@ -51,7 +53,7 @@ class MonitorThread(Thread):
         # Receive/respond loop
         while True:
             data, address = sock.recvfrom(1024) 
-            print data
+            #print data
             wx.CallAfter(self.updateStatus, data)
             #time.sleep(5)
         # This is the code executing in the new thread.
@@ -66,9 +68,9 @@ class MonitorThread(Thread):
         """
         Send status to GUI
         """
-        print "sending pub.sendMessage with data"
-        print data
-        pub.sendMessage('update', data)
+        #print "sending pub.sendMessage with data"
+        #print data
+        dispatcher.send( signal=SIGNAL, sender=data )
 
 #################################################################################################
 
@@ -97,15 +99,17 @@ class TaskBarIcon(wx.TaskBarIcon):
         self.flash_timer.Start(FLASH_TIMER)
         self.Bind(wx.EVT_TIMER, self.FlashIcon, id=FLASH_TIMER_ID) 
     # create a pubsub receiver
-        pub.subscribe(self.CheckStatus, 'update')
+        dispatcher.connect(self.CheckStatus, signal=SIGNAL, sender=dispatcher.Any  )
     
     
-    def CheckStatus(self, msg):
+    def CheckStatus(self, sender ):
         """
         Receives data from thread and updates the display
         """
-        self.data = msg.data
-        #print t
+        
+        #print sender
+        self.data = sender
+        #print self.data
         if self.data == 'off':
             self.StopBlinkIcon()    
         else:
