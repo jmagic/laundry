@@ -85,7 +85,7 @@ class TaskBarIcon(wx.TaskBarIcon):
     def __init__(self):
         super(TaskBarIcon, self).__init__()
         self.set_icon('icons/off.ico', 'Off')
-        #self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.on_left_down)
+        self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.on_left_down)
         status = urlopen('http://192.168.10.160:8080/status.txt').read()
         #self.data = 'off'
         self.data = status
@@ -171,10 +171,9 @@ class TaskBarIcon(wx.TaskBarIcon):
         self.icon_state = False
         self.icon_blink = False    
     
-#    def on_left_down(self, event):
+    def on_left_down(self, event):
         #self.CheckStatus(event)
-        
-        
+
     def on_exit(self, event):
         #wx.CallAfter(self.Destroy)
         self.RemoveIcon()
