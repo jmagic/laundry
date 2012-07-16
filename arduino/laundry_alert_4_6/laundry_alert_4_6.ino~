@@ -196,14 +196,14 @@ void loop()
     if (washerState !=  lastwasherState)
      {    
       
-        if (lastwasherState == 1)    // the washer light has turned off, we need to sound the alert
+        if (lastwasherState == 1)
          {
           setAlert(1);
           washer_time = millis();
           lastwasherState = 0;
           }
-        else // (lastwasherState == 0)  // the washer light has turned on, we need to clear the alert
-         {                               // this is the automatic reset, a new load has been added.
+        else // (lastwasherState == 0)
+         {
            lastwasherState = 1;
            if (alert == 1 or alert == 11)
              {
@@ -230,12 +230,12 @@ void loop()
          }
       }  
      
-     if ((digitalRead(buttonPin)) == 0)
+   /*if ((digitalRead(buttonPin)) == 0)
      {
         alert = 0;
         washer_time = 0;
         dryer_time = 0;
-     } 
+     } */
      //Serial.println(digitalRead(buttonPin));
      //if (alert != 0)
      //{
